@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* Configuration du thème */
+@theme {
+  /* Couleurs officielles */
+  --color-cream: #F8F6F0;
+  --color-gold: #D4AF37;
+  --color-turquoise: #00AFAF;
+  --color-navy: #0F172A;
+
+  /* Typographie */
+  --font-poppins: 'Poppins', sans-serif;
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* Styles de base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-poppins);
+    background-color: var(--color-cream);
+    color: var(--color-navy);
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+}
+
+/* Composants personnalisés */
+@layer components {
+  .container-custom {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .btn-primary {
+    background-color: var(--color-turquoise);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 300ms ease;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    border: 2px solid var(--color-gold);
+    color: var(--color-gold);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 300ms ease;
+    display: inline-block;
+    background-color: transparent;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-gold);
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .section-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .section-title {
+      font-size: 3rem;
+      line-height: 3.5rem;
+    }
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #4b5563;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Utilitaires personnalisés */
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--color-gold) 0%, #f5d76e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-premium {
+    background: linear-gradient(135deg, var(--color-navy) 0%, #1e2a4a 100%);
+  }
+}
