@@ -3,7 +3,7 @@ import { siteConfig, getImage } from '../data/config';
 import OverviewSection from '../components/sections/OverviewSection'; 
 import colImage from '../assets/images/col.jpeg';
 import ensImage from '../assets/images/ens.jpeg';
-import fpImage from '../assets/images/ens.jpeg';
+import fpImage from '../assets/images/fp.jpeg';
 import i1Image from '../assets/images/11.jpeg';
 import i2Image from '../assets/images/22.jpeg';
 import i3Image from '../assets/images/33.jpeg';

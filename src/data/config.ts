@@ -60,4 +60,10 @@ export const siteConfig = {
     whatsapp: "+237 6XX XXX XXX",
     email: "contact@ippam-angeleonce.com",
   },
+
+  social: {
+  facebook: "https://facebook.com/votre-page",
+  instagram: "https://instagram.com/votre-compte",
+  linkedin: "https://linkedin.com/company/votre-entreprise",
+}
 };
