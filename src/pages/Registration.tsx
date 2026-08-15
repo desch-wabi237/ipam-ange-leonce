@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 
-// ============================================
-// INTERFACE POUR LES DONNÉES UTILISATEUR
-// ============================================
 interface UserData {
   nom: string;
   prenom: string;
@@ -13,17 +10,12 @@ interface UserData {
   password: string;
   confirmPassword: string;
   niveau: string;
+  classe: string;
+  section: string;
   filiere: string;
   acceptConditions: boolean;
 }
 
-// ============================================
-// INTERFACE POUR LES ERREURS
-// ============================================
-// IMPORTANT :
-// Les données du formulaire et les messages d'erreur
-// doivent avoir des types différents.
-// ============================================
 interface FormErrors {
   nom?: string;
   prenom?: string;
@@ -32,6 +24,8 @@ interface FormErrors {
   password?: string;
   confirmPassword?: string;
   niveau?: string;
+  classe?: string;
+  section?: string;
   filiere?: string;
   acceptConditions?: string;
 }
@@ -39,18 +33,11 @@ interface FormErrors {
 const Registration = () => {
   const navigate = useNavigate();
 
-  // Étape actuelle du formulaire
   const [step, setStep] = useState(1);
-
-  // État de soumission
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Affichage du mot de passe
   const [showPassword, setShowPassword] = useState(false);
+  const [accountError, setAccountError] = useState('');
 
-  // ============================================
-  // DONNÉES DU FORMULAIRE
-  // ============================================
   const [formData, setFormData] = useState<UserData>({
     nom: '',
     prenom: '',
@@ -59,29 +46,68 @@ const Registration = () => {
     password: '',
     confirmPassword: '',
     niveau: '',
+    classe: '',
+    section: '',
     filiere: '',
     acceptConditions: false,
   });
 
-  // ============================================
-  // ERREURS DU FORMULAIRE
-  // ============================================
   const [errors, setErrors] = useState<FormErrors>({});
 
-  // ============================================
-  // NIVEAUX DISPONIBLES
-  // ============================================
   const niveaux = [
     'Maternelle',
     'Primaire',
     'Secondaire Général',
     'Secondaire Technique',
-    'Formation Professionnelle',
+    'Supérieur / Formation Professionnelle',
   ];
 
-  // ============================================
-  // FILIÈRES DISPONIBLES
-  // ============================================
+  const classesMaternelle = [
+    'Petite Section',
+    'Moyenne Section',
+    'Grande Section',
+  ];
+
+  const classesPrimaire = [
+    'SIL',
+    'CP',
+    'CE1',
+    'CE2',
+    'CM1',
+    'CM2',
+  ];
+
+  const classesSecondaireGeneral = [
+    '6ème',
+    '5ème',
+    '4ème',
+    '3ème',
+    'Seconde',
+    'Première',
+    'Terminale',
+  ];
+
+  const classesSecondaireTechnique = [
+    '6ème',
+    '5ème',
+    '4ème',
+    '3ème',
+    'Seconde',
+    'Première',
+    'Terminale',
+  ];
+
+  const classesSuperieur = [
+    '1ère année',
+    '2ème année',
+    '3ème année',
+  ];
+
+  const sections = [
+    'Francophone',
+    'Anglophone',
+  ];
+
   const filieres = [
     'Gestion des Entreprises',
     'Informatique et Technologies',
@@ -90,9 +116,37 @@ const Registration = () => {
     'Hôtellerie et Tourisme',
   ];
 
-  // ============================================
-  // GESTION DES CHANGEMENTS
-  // ============================================
+  const isSecondaire =
+    formData.niveau === 'Secondaire Général' ||
+    formData.niveau === 'Secondaire Technique';
+
+  const isSuperieur =
+    formData.niveau === 'Supérieur / Formation Professionnelle';
+
+  const getClasses = () => {
+    if (formData.niveau === 'Maternelle') {
+      return classesMaternelle;
+    }
+
+    if (formData.niveau === 'Primaire') {
+      return classesPrimaire;
+    }
+
+    if (formData.niveau === 'Secondaire Général') {
+      return classesSecondaireGeneral;
+    }
+
+    if (formData.niveau === 'Secondaire Technique') {
+      return classesSecondaireTechnique;
+    }
+
+    if (isSuperieur) {
+      return classesSuperieur;
+    }
+
+    return [];
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -103,12 +157,33 @@ const Registration = () => {
         ? (e.target as HTMLInputElement).checked
         : value;
 
+    setAccountError('');
+
+    if (name === 'niveau') {
+      setFormData((prev) => ({
+        ...prev,
+        niveau: value,
+        classe: '',
+        section: '',
+        filiere: '',
+      }));
+
+      setErrors((prev) => ({
+        ...prev,
+        niveau: undefined,
+        classe: undefined,
+        section: undefined,
+        filiere: undefined,
+      }));
+
+      return;
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: newValue,
     }));
 
-    // Effacer l'erreur du champ lorsqu'il est modifié
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({
         ...prev,
@@ -117,15 +192,9 @@ const Registration = () => {
     }
   };
 
-  // ============================================
-  // VALIDATION DU FORMULAIRE
-  // ============================================
   const validateStep = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // ==========================================
-    // ÉTAPE 1
-    // ==========================================
     if (step === 1) {
       if (!formData.nom.trim()) {
         newErrors.nom = 'Le nom est requis';
@@ -159,17 +228,39 @@ const Registration = () => {
         newErrors.confirmPassword =
           'Les mots de passe ne correspondent pas';
       }
+
+      const users = JSON.parse(
+        localStorage.getItem('users') || '[]'
+      );
+
+      const oldUser = users.find(
+        (user: UserData) =>
+          user.email.toLowerCase() === formData.email.trim().toLowerCase()
+      );
+
+      const currentUser = JSON.parse(
+        localStorage.getItem('user') || 'null'
+      );
+
+      if (oldUser || currentUser?.email?.toLowerCase() === formData.email.trim().toLowerCase()) {
+        newErrors.email = 'Cette adresse email possède déjà un compte';
+      }
     }
 
-    // ==========================================
-    // ÉTAPE 2
-    // ==========================================
     if (step === 2) {
       if (!formData.niveau) {
         newErrors.niveau = 'Veuillez sélectionner un niveau';
       }
 
-      if (!formData.filiere) {
+      if (!formData.classe) {
+        newErrors.classe = 'Veuillez sélectionner une classe';
+      }
+
+      if (isSecondaire && !formData.section) {
+        newErrors.section = 'Veuillez sélectionner une section';
+      }
+
+      if (isSuperieur && !formData.filiere) {
         newErrors.filiere = 'Veuillez sélectionner une filière';
       }
 
@@ -184,10 +275,9 @@ const Registration = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // ============================================
-  // PASSER À L'ÉTAPE SUIVANTE
-  // ============================================
   const nextStep = () => {
+    setAccountError('');
+
     if (validateStep()) {
       setStep((prev) => prev + 1);
 
@@ -198,10 +288,8 @@ const Registration = () => {
     }
   };
 
-  // ============================================
-  // REVENIR À L'ÉTAPE PRÉCÉDENTE
-  // ============================================
   const prevStep = () => {
+    setAccountError('');
     setStep((prev) => prev - 1);
 
     window.scrollTo({
@@ -210,9 +298,6 @@ const Registration = () => {
     });
   };
 
-  // ============================================
-  // SOUMISSION DU FORMULAIRE
-  // ============================================
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -221,47 +306,65 @@ const Registration = () => {
     }
 
     setIsSubmitting(true);
+    setAccountError('');
 
-    // Simulation d'inscription
     setTimeout(() => {
-      // ========================================
-      // DONNÉES À SAUVEGARDER
-      // ========================================
+      const users = JSON.parse(
+        localStorage.getItem('users') || '[]'
+      );
+
+      const email = formData.email.trim().toLowerCase();
+
+      const existingUser = users.find(
+        (user: UserData) =>
+          user.email.toLowerCase() === email
+      );
+
+      if (existingUser) {
+        setAccountError(
+          'Cette adresse email possède déjà un compte. Connectez-vous avec votre compte existant.'
+        );
+        setIsSubmitting(false);
+        return;
+      }
+
       const userData = {
-        nom: formData.nom,
-        prenom: formData.prenom,
-        email: formData.email,
-        telephone: formData.telephone,
+        id: Date.now().toString(),
+        nom: formData.nom.trim(),
+        prenom: formData.prenom.trim(),
+        email,
+        telephone: formData.telephone.trim(),
+        password: formData.password,
         niveau: formData.niveau,
+        classe: formData.classe,
+        section: formData.section,
         filiere: formData.filiere,
         isLoggedIn: true,
         inscriptionDate: new Date().toLocaleDateString('fr-FR'),
+        statutInscription: 'Inscription reçue',
       };
 
-      // ========================================
-      // SAUVEGARDE DANS LOCALSTORAGE
-      // ========================================
-      localStorage.setItem('user', JSON.stringify(userData));
+      users.push(userData);
+
+      localStorage.setItem(
+        'users',
+        JSON.stringify(users)
+      );
+
+      localStorage.setItem(
+        'user',
+        JSON.stringify(userData)
+      );
 
       setIsSubmitting(false);
 
-      // ========================================
-      // RETOUR À L'ACCUEIL
-      // ========================================
       navigate('/');
-
-      // Recharger la page afin que le Header
-      // détecte immédiatement le nouvel utilisateur
       window.location.reload();
-    }, 2000);
+    }, 1000);
   };
 
   return (
     <Layout>
-      {/* ============================================ */}
-      {/* SECTION 1 : HERO INSCRIPTION */}
-      {/* ============================================ */}
-
       <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 bg-linear-to-br from-navy/90 via-navy/80 to-turquoise/40">
           <div
@@ -289,18 +392,9 @@ const Registration = () => {
         </div>
       </section>
 
-      {/* ============================================ */}
-      {/* SECTION 2 : FORMULAIRE */}
-      {/* ============================================ */}
-
       <section className="py-16 bg-cream">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-
-            {/* ======================================== */}
-            {/* EN-TÊTE AVEC PROGRESSION */}
-            {/* ======================================== */}
-
             <div className="bg-linear-to-r from-navy to-navy/90 px-8 py-6">
               <div className="flex justify-between items-center">
                 <div>
@@ -335,25 +429,27 @@ const Registration = () => {
               </div>
             </div>
 
-            {/* ======================================== */}
-            {/* FORMULAIRE */}
-            {/* ======================================== */}
-
             <form
               onSubmit={handleSubmit}
               className="p-8"
             >
-              {/* ====================================== */}
-              {/* ÉTAPE 1 */}
-              {/* ====================================== */}
+              {accountError && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-500 text-sm">
+                  <p>{accountError}</p>
+
+                  <button
+                    type="button"
+                    onClick={() => navigate('/connexion')}
+                    className="mt-2 text-gold font-semibold hover:underline"
+                  >
+                    Se connecter
+                  </button>
+                </div>
+              )}
 
               {step === 1 && (
                 <div className="space-y-4">
-
-                  {/* NOM + PRÉNOM */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                    {/* NOM */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Nom *
@@ -379,7 +475,6 @@ const Registration = () => {
                       )}
                     </div>
 
-                    {/* PRÉNOM */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Prénom *
@@ -406,7 +501,6 @@ const Registration = () => {
                     </div>
                   </div>
 
-                  {/* EMAIL */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Email *
@@ -432,7 +526,6 @@ const Registration = () => {
                     )}
                   </div>
 
-                  {/* TÉLÉPHONE */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Téléphone *
@@ -458,10 +551,7 @@ const Registration = () => {
                     )}
                   </div>
 
-                  {/* MOT DE PASSE + CONFIRMATION */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                    {/* MOT DE PASSE */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Mot de passe *
@@ -491,11 +581,6 @@ const Registration = () => {
                             setShowPassword(!showPassword)
                           }
                           className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gold transition-colors"
-                          aria-label={
-                            showPassword
-                              ? 'Masquer le mot de passe'
-                              : 'Afficher le mot de passe'
-                          }
                         >
                           {showPassword ? '🙈' : '👁️'}
                         </button>
@@ -508,7 +593,6 @@ const Registration = () => {
                       )}
                     </div>
 
-                    {/* CONFIRMATION */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Confirmer le mot de passe *
@@ -537,14 +621,8 @@ const Registration = () => {
                 </div>
               )}
 
-              {/* ====================================== */}
-              {/* ÉTAPE 2 */}
-              {/* ====================================== */}
-
               {step === 2 && (
                 <div className="space-y-4">
-
-                  {/* NIVEAU */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Niveau d'études *
@@ -581,47 +659,122 @@ const Registration = () => {
                     )}
                   </div>
 
-                  {/* FILIÈRE */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Filière *
-                    </label>
+                  {formData.niveau && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Classe *
+                      </label>
 
-                    <select
-                      name="filiere"
-                      value={formData.filiere}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-xl border-2 ${
-                        errors.filiere
-                          ? 'border-red-400'
-                          : 'border-gray-200'
-                      } focus:border-gold focus:outline-none transition-colors`}
-                    >
-                      <option value="">
-                        Sélectionnez une filière
-                      </option>
-
-                      {filieres.map((filiere) => (
-                        <option
-                          key={filiere}
-                          value={filiere}
-                        >
-                          {filiere}
+                      <select
+                        name="classe"
+                        value={formData.classe}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 rounded-xl border-2 ${
+                          errors.classe
+                            ? 'border-red-400'
+                            : 'border-gray-200'
+                        } focus:border-gold focus:outline-none transition-colors`}
+                      >
+                        <option value="">
+                          Sélectionnez une classe
                         </option>
-                      ))}
-                    </select>
 
-                    {errors.filiere && (
-                      <p className="text-red-400 text-xs mt-1">
-                        {errors.filiere}
-                      </p>
-                    )}
-                  </div>
+                        {getClasses().map((classe) => (
+                          <option
+                            key={classe}
+                            value={classe}
+                          >
+                            {classe}
+                          </option>
+                        ))}
+                      </select>
 
-                  {/* CONDITIONS */}
+                      {errors.classe && (
+                        <p className="text-red-400 text-xs mt-1">
+                          {errors.classe}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {isSecondaire && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Section *
+                      </label>
+
+                      <select
+                        name="section"
+                        value={formData.section}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 rounded-xl border-2 ${
+                          errors.section
+                            ? 'border-red-400'
+                            : 'border-gray-200'
+                        } focus:border-gold focus:outline-none transition-colors`}
+                      >
+                        <option value="">
+                          Sélectionnez une section
+                        </option>
+
+                        {sections.map((section) => (
+                          <option
+                            key={section}
+                            value={section}
+                          >
+                            {section}
+                          </option>
+                        ))}
+                      </select>
+
+                      {errors.section && (
+                        <p className="text-red-400 text-xs mt-1">
+                          {errors.section}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {isSuperieur && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Filière *
+                      </label>
+
+                      <select
+                        name="filiere"
+                        value={formData.filiere}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 rounded-xl border-2 ${
+                          errors.filiere
+                            ? 'border-red-400'
+                            : 'border-gray-200'
+                        } focus:border-gold focus:outline-none transition-colors`}
+                      >
+                        <option value="">
+                          Sélectionnez une filière
+                        </option>
+
+                        {filieres.map((filiere) => (
+                          <option
+                            key={filiere}
+                            value={filiere}
+                          >
+                            {filiere}
+                          </option>
+                        ))}
+                      </select>
+
+                      {errors.filiere && (
+                        <p className="text-red-400 text-xs mt-1">
+                          {errors.filiere}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
                   <div className="bg-cream rounded-xl p-4">
                     <div className="flex items-start gap-3">
-
                       <input
                         type="checkbox"
                         name="acceptConditions"
@@ -653,13 +806,7 @@ const Registration = () => {
                 </div>
               )}
 
-              {/* ====================================== */}
-              {/* BOUTONS */}
-              {/* ====================================== */}
-
               <div className="flex gap-4 mt-8">
-
-                {/* RETOUR */}
                 {step > 1 && (
                   <button
                     type="button"
@@ -670,7 +817,6 @@ const Registration = () => {
                   </button>
                 )}
 
-                {/* SUIVANT */}
                 {step < 2 ? (
                   <button
                     type="button"
@@ -680,9 +826,6 @@ const Registration = () => {
                     Suivant →
                   </button>
                 ) : (
-                  /* ================================== */
-                  /* BOUTON INSCRIPTION */
-                  /* ================================== */
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -694,7 +837,6 @@ const Registration = () => {
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
-
                         <svg
                           className="animate-spin h-5 w-5"
                           viewBox="0 0 24 24"
@@ -708,14 +850,12 @@ const Registration = () => {
                             strokeWidth="4"
                             fill="none"
                           />
-
                           <path
                             className="opacity-75"
                             fill="currentColor"
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 0 12 0s6.627 5.373 12 12h-4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                           />
                         </svg>
-
                         Inscription en cours...
                       </span>
                     ) : (
@@ -726,23 +866,18 @@ const Registration = () => {
               </div>
             </form>
 
-            {/* ======================================== */}
-            {/* PIED DU FORMULAIRE */}
-            {/* ======================================== */}
-
             <div className="bg-cream px-8 py-4 border-t border-gray-100">
               <p className="text-center text-sm text-gray-500">
                 Vous avez déjà un compte ?{' '}
                 <button
                   type="button"
-                  onClick={() => navigate('/espace-utilisateur')}
+                  onClick={() => navigate('/connexion')}
                   className="text-gold font-semibold hover:underline"
                 >
                   Se connecter
                 </button>
               </p>
             </div>
-
           </div>
         </div>
       </section>
