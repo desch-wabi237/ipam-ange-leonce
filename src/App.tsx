@@ -5,7 +5,8 @@ import Establishments from './pages/Establishments';
 import Gallery from './pages/Gallery';
 import News from './pages/News';
 import Contact from './pages/Contact';
-import Registration from './pages/Registration';  // ← AJOUTER CETTE LIGNE
+import Registration from './pages/Registration';
+import Login from './pages/Login';  // ← AJOUTER CETTE LIGNE
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/galerie" element={<Gallery />} />
         <Route path="/actualites" element={<News />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/inscription" element={<Registration />} />  {/* ← AJOUTER CETTE ROUTE */}
+        <Route path="/inscription" element={<Registration />} />
+        <Route path="/connexion" element={<Login />} />  {/* ← AJOUTER CETTE ROUTE */}
       </Routes>
     </Router>
   );
