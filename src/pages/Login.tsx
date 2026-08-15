@@ -104,7 +104,7 @@ const Login = () => {
       {/* SECTION 1: HERO CONNEXION */}
       {/* ============================================ */}
       <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/80 to-turquoise/40">
+        <div className="absolute inset-0 bg-linear-to-br from-navy/90 via-navy/80 to-turquoise/40">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20"></div>
         </div>
         
@@ -126,7 +126,7 @@ const Login = () => {
         <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
             {/* En-tête */}
-            <div className="bg-gradient-to-r from-navy to-navy/90 px-8 py-6">
+            <div className="bg-linear-to-r from-navy to-navy/90 px-8 py-6">
               <h2 className="text-white text-xl font-bold text-center">
                 Connectez-vous
               </h2>
