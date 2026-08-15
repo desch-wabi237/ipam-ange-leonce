@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import { siteConfig } from '../data/config';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   // État pour le formulaire
@@ -100,7 +101,7 @@ const Contact = () => {
       {/* SECTION 1: HERO CONTACT */}
       {/* ============================================ */}
       <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/80 to-turquoise/40">
+        <div className="absolute inset-0 bg-linear-to-br from-navy/90 via-navy/80 to-turquoise/40">
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -354,7 +355,10 @@ const Contact = () => {
       {/* ============================================ */}
       {/* SECTION 5: APPEL À L'ACTION */}
       {/* ============================================ */}
-      <section className="py-16 bg-gradient-to-r from-navy to-navy/90 text-white">
+            {/* ============================================ */}
+      {/* SECTION 5: APPEL À L'ACTION */}
+      {/* ============================================ */}
+      <section className="py-16 bg-linear-to-r from-navy to-navy/90 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Prêt à rejoindre notre famille ?
@@ -363,12 +367,19 @@ const Contact = () => {
             Inscrivez votre enfant dès maintenant pour lui offrir le meilleur départ dans la vie.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gold text-navy px-8 py-3 rounded-full font-semibold hover:bg-gold/90 transition-all hover:scale-105">
-              Formulaire d'inscription
-            </button>
-            <button className="bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:border-gold hover:text-gold transition-all">
-              Nous contacter
-            </button>
+            {/* Bouton Formulaire d'inscription - Redirige vers /inscription */}
+            <Link to="/inscription">
+              <button className="bg-gold text-navy px-8 py-3 rounded-full font-semibold hover:bg-gold/90 transition-all hover:scale-105 w-full sm:w-auto">
+                Formulaire d'inscription
+              </button>
+            </Link>
+            
+            {/* Bouton Nous contacter - Redirige vers /contact */}
+            <Link to="/contact">
+              <button className="bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:border-gold hover:text-gold transition-all w-full sm:w-auto">
+                Nous contacter
+              </button>
+            </Link>
           </div>
         </div>
       </section>

@@ -162,7 +162,7 @@ const News = () => {
       {/* SECTION 1: HERO ACTUALITÉS */}
       {/* ============================================ */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/80 to-turquoise/40">
+        <div className="absolute inset-0 bg-linear-to-br from-navy/90 via-navy/80 to-turquoise/40">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20"></div>
         </div>
         
@@ -244,7 +244,7 @@ const News = () => {
                         }}
                       />
                       {/* Overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-navy/60 via-transparent to-transparent"></div>
                       
                       {/* Badge catégorie */}
                       <div className="absolute top-4 left-4">
@@ -348,7 +348,7 @@ const News = () => {
       {/* SECTION 5: ACTUALITÉS À LA UNE */}
       {/* ============================================ */}
       {filteredNews.length > 0 && (
-        <section className="py-16 bg-gradient-to-r from-navy to-navy/90 text-white">
+        <section className="py-16 bg-linear-to-r from-navy to-navy/90 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               À la une
@@ -359,9 +359,6 @@ const News = () => {
             <p className="text-white/60 text-sm max-w-xl mx-auto">
               {filteredNews[0].excerpt}
             </p>
-            <button className="mt-6 bg-gold text-navy px-8 py-2 rounded-full font-semibold hover:bg-gold/90 transition-all hover:scale-105">
-              Lire l'article
-            </button>
           </div>
         </section>
       )}

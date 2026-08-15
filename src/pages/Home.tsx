@@ -8,6 +8,7 @@ import i1Image from '../assets/images/11.jpeg';
 import i2Image from '../assets/images/22.jpeg';
 import i3Image from '../assets/images/33.jpeg';
 import i4Image from '../assets/images/44.jpeg';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -51,15 +52,22 @@ const Home = () => {
             dans un environnement d'excellence, alliant tradition et modernité.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="group relative overflow-hidden bg-gold text-navy px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl">
-              <span className="relative z-10">Découvrir nos écoles</span>
-              <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-            </button>
-            <button className="group relative overflow-hidden bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:border-gold hover:text-gold hover:scale-105">
-              <span className="relative z-10">Nous contacter</span>
-            </button>
-          </div>
+<div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+  {/* Bouton Découvrir nos écoles - Redirige vers /etablissements */}
+  <Link to="/etablissements">
+    <button className="group relative overflow-hidden bg-gold text-navy px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl w-full sm:w-auto">
+      <span className="relative z-10">Découvrir nos écoles</span>
+      <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+    </button>
+  </Link>
+  
+  {/* Bouton Nous contacter - Redirige vers /contact */}
+  <Link to="/contact">
+    <button className="group relative overflow-hidden bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:border-gold hover:text-gold hover:scale-105 w-full sm:w-auto">
+      <span className="relative z-10">Nous contacter</span>
+    </button>
+  </Link>
+</div>
 
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
@@ -80,7 +88,7 @@ const Home = () => {
       <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-gold font-semibold text-sm tracking-wider uppercase">À propos</span>
+            <span className="text-gold font-semibold text-sm tracking-wider uppercase"></span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy mt-2 mb-4">
               Bienvenue dans notre établissement
             </h2>
@@ -266,12 +274,19 @@ const Home = () => {
                 Une éducation d'excellence dans un cadre d'exception.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-gold text-navy px-8 py-3 rounded-full font-semibold hover:bg-gold/90 transition-all hover:scale-105">
-                  Formulaire d'inscription
-                </button>
-                <button className="bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:border-gold hover:text-gold transition-all">
-                  Nous contacter
-                </button>
+                {/* Bouton Formulaire d'inscription - Redirige vers /inscription */}
+                <Link to="/inscription">
+                  <button className="bg-gold text-navy px-8 py-3 rounded-full font-semibold hover:bg-gold/90 transition-all hover:scale-105 w-full sm:w-auto">
+                    Formulaire d'inscription
+                  </button>
+                </Link>
+                
+                {/* Bouton Nous contacter - Redirige vers /contact */}
+                <Link to="/contact">
+                  <button className="bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:border-gold hover:text-gold transition-all w-full sm:w-auto">
+                    Nous contacter
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

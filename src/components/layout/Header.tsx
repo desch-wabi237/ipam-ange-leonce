@@ -93,7 +93,7 @@ const Header = () => {
                 className="relative text-navy/80 hover:text-gold font-medium transition-all duration-300 group py-2"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-gold to-gold/50 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-gold to-gold/50 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </nav>
@@ -121,7 +121,7 @@ const Header = () => {
                 {/* Menu déroulant utilisateur */}
                 {isUserMenuOpen && (
                   <div className="absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
-                    <div className="px-4 py-3 bg-gradient-to-r from-navy to-navy/90">
+                    <div className="px-4 py-3 bg-linear-to-r from-navy to-navy/90">
                       <p className="text-white font-semibold">{user.prenom} {user.nom}</p>
                       <p className="text-white/60 text-sm">{user.email}</p>
                     </div>
@@ -160,10 +160,10 @@ const Header = () => {
                 </Link>
                 <Link
                   to="/inscription"
-                  className="relative overflow-hidden bg-gradient-to-r from-turquoise to-turquoise/80 text-white px-7 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+                  className="relative overflow-hidden bg-linear-to-r from-turquoise to-turquoise/80 text-white px-7 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg group"
                 >
                   <span className="relative z-10">S'inscrire</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-gold to-gold/80 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-gold to-gold/80 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 </Link>
               </div>
             )}
@@ -239,7 +239,7 @@ const Header = () => {
                   </Link>
                   <Link
                     to="/inscription"
-                    className="block bg-gradient-to-r from-turquoise to-turquoise/80 text-white px-6 py-3 rounded-full font-semibold text-center hover:shadow-lg transition-all"
+                    className="block bg-linear-to-r from-turquoise to-turquoise/80 text-white px-6 py-3 rounded-full font-semibold text-center hover:shadow-lg transition-all"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     S'inscrire

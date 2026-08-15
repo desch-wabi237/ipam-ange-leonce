@@ -263,7 +263,7 @@ const Registration = () => {
       {/* ============================================ */}
 
       <section className="relative min-h-[40vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/80 to-turquoise/40">
+        <div className="absolute inset-0 bg-linear-to-br from-navy/90 via-navy/80 to-turquoise/40">
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"
             style={{
@@ -301,7 +301,7 @@ const Registration = () => {
             {/* EN-TÊTE AVEC PROGRESSION */}
             {/* ======================================== */}
 
-            <div className="bg-gradient-to-r from-navy to-navy/90 px-8 py-6">
+            <div className="bg-linear-to-r from-navy to-navy/90 px-8 py-6">
               <div className="flex justify-between items-center">
                 <div>
                   <h2 className="text-white text-xl font-bold">

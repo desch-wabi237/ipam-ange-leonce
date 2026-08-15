@@ -1,4 +1,5 @@
 import Layout from '../components/layout/Layout';
+import { Link } from 'react-router-dom';
 
 const Establishments = () => {
   // Données des établissements
@@ -90,7 +91,7 @@ const Establishments = () => {
       {/* SECTION 1: HERO NOS ÉTABLISSEMENTS */}
       {/* ============================================ */}
       <section className="relative min-h-[55vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/80 to-turquoise/40">
+        <div className="absolute inset-0 bg-linear-to-br from-navy/90 via-navy/80 to-turquoise/40">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20"></div>
         </div>
         
@@ -331,7 +332,7 @@ const Establishments = () => {
       {/* ============================================ */}
       {/* SECTION 7: POURQUOI NOUS CHOISIR */}
       {/* ============================================ */}
-      <section className="py-20 bg-gradient-to-r from-navy to-navy/90 text-white">
+      <section className="py-20 bg-linear-to-r from-navy to-navy/90 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-gold font-semibold text-sm tracking-wider uppercase">Pourquoi nous choisir</span>
@@ -394,12 +395,19 @@ const Establishments = () => {
                 pour lui offrir une éducation d'excellence.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-gold text-navy px-8 py-3 rounded-full font-semibold hover:bg-gold/90 transition-all hover:scale-105">
-                  Formulaire d'inscription
-                </button>
-                <button className="bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:border-gold hover:text-gold transition-all">
-                  Nous contacter
-                </button>
+                {/* Bouton Formulaire d'inscription - Redirige vers /inscription */}
+                <Link to="/inscription">
+                  <button className="bg-gold text-navy px-8 py-3 rounded-full font-semibold hover:bg-gold/90 transition-all hover:scale-105 w-full sm:w-auto">
+                    Formulaire d'inscription
+                  </button>
+                </Link>
+                
+                {/* Bouton Nous contacter - Redirige vers /contact */}
+                <Link to="/contact">
+                  <button className="bg-transparent border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:border-gold hover:text-gold transition-all w-full sm:w-auto">
+                    Nous contacter
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
