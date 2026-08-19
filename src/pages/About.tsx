@@ -1,4 +1,5 @@
 import Layout from '../components/layout/Layout';
+import hsipam from '../assets/images/hsipam.png';
 
 const About = () => {
   // Données des valeurs
@@ -148,20 +149,24 @@ const About = () => {
                 </div>
               </div>
             </div>
+
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                <img
+                  src={hsipam}
                   alt="Histoire de l'établissement"
                   className="w-full h-96 object-cover"
                   onError={(e) => {
-                    e.currentTarget.src = 'https://placehold.co/800x600/F8F6F0/D4AF37?text=Notre+Histoire';
+                    e.currentTarget.src =
+                      'https://placehold.co/800x600/F8F6F0/D4AF37?text=Notre+Histoire';
                   }}
                 />
               </div>
+
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gold/10 rounded-full blur-2xl"></div>
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-turquoise/10 rounded-full blur-2xl"></div>
             </div>
+
           </div>
         </div>
       </section>

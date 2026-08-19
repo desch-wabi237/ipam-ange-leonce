@@ -56,14 +56,14 @@ export const siteConfig = {
   // Contacts
   contacts: {
     adresse: "Yaoundé, Cameroun",
-    telephone: "+237 6XX XXX XXX",
-    whatsapp: "+237 6XX XXX XXX",
+    telephone: "+237 695 65 45 58",
+    whatsapp: "+237 677 24 52 45",
     email: "contact@ippam-angeleonce.com",
   },
 
   social: {
-  facebook: "https://facebook.com/votre-page",
-  instagram: "https://instagram.com/votre-compte",
+  facebook: "https://www.facebook.com/share/19Y9Y2oWPX/?mibextid=wwXIfr",
+  Tiktok: "https://www.tiktok.com/@angeleonce2026?_r=1&_t=ZS-98yrEdJFkUp",
   linkedin: "https://linkedin.com/company/votre-entreprise",
 }
 };

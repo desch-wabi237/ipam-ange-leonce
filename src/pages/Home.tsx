@@ -260,7 +260,7 @@ const Home = () => {
       {/* ============================================ */}
       <section className="py-20 bg-cream">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-3xl bg-linear-to-r from-navy to-navy/90 p-12 md:p-16 text-center">
+          <div className="relative overflow-hidden rounded-3xl bg-linear1-to-r from-navy to-navy/90 p-12 md:p-16 text-center">
             <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-turquoise/5 rounded-full blur-3xl"></div>
             

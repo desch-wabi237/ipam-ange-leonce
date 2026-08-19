@@ -51,7 +51,7 @@ const Contact = () => {
       title: 'Adresse',
       details: siteConfig.contacts.adresse,
       action: 'Voir sur la carte',
-      link: '#map'
+      link: 'https://maps.apple/p/23if6n5QF0gJbm'
     },
     {
       id: 2,
@@ -82,7 +82,7 @@ const Contact = () => {
   // Réseaux sociaux
   const socialLinks = [
     { id: 1, name: 'Facebook', icon: '📘', url: siteConfig.social.facebook, color: 'hover:bg-blue-600' },
-    { id: 2, name: 'Instagram', icon: '📸', url: siteConfig.social.instagram, color: 'hover:bg-pink-600' },
+    { id: 2, name: 'Tiktok', icon: '📸', url: siteConfig.social.Tiktok, color: 'hover:bg-pink-600' },
     { id: 3, name: 'LinkedIn', icon: '🔗', url: siteConfig.social.linkedin, color: 'hover:bg-blue-700' },
     { id: 4, name: 'YouTube', icon: '▶️', url: '#', color: 'hover:bg-red-600' },
     { id: 5, name: 'Twitter', icon: '🐦', url: '#', color: 'hover:bg-blue-400' }

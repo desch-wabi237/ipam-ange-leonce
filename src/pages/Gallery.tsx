@@ -1,6 +1,18 @@
 import { useState } from 'react';
 import Layout from '../components/layout/Layout';
 import { Link } from 'react-router-dom'; 
+import b4 from "../assets/images/b4.jpg";
+import t4 from "../assets/images/t4.jpg";
+import b2 from "../assets/images/b2.jpg";
+import t3 from "../assets/images/t3.png";
+import a2 from "../assets/images/a2.jpg";
+import ttt from "../assets/images/ttt.jpg";
+import t1 from "../assets/images/t1.jpg";
+import t2 from "../assets/images/t2.jpg";
+import hsipam from "../assets/images/hsipam.png";
+import aaaa from "../assets/images/aaaa.jpg";
+import bbbbb from "../assets/images/bbbbb.jpeg";
+import bbbb from "../assets/images/bbbb.jpeg";
 
 const Gallery = () => {
   // État pour le filtre actif
@@ -24,7 +36,7 @@ const Gallery = () => {
       category: 'classes',
       title: 'Salle de classe maternelle',
       description: 'Un espace coloré et adapté aux tout-petits',
-      image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: b4,
       date: '2025'
     },
     {
@@ -32,7 +44,7 @@ const Gallery = () => {
       category: 'classes',
       title: 'Salle de classe primaire',
       description: 'Un environnement propice à l\'apprentissage',
-      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image:t4,
       date: '2025'
     },
     {
@@ -40,7 +52,7 @@ const Gallery = () => {
       category: 'classes',
       title: 'Salle de classe secondaire',
       description: 'Des équipements modernes pour les grands',
-      image: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: b2,
       date: '2025'
     },
 
@@ -50,7 +62,7 @@ const Gallery = () => {
       category: 'activities',
       title: 'Journée sportive',
       description: 'Les élèves en pleine activité sportive',
-      image: 'https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: t3,
       date: '2025'
     },
     {
@@ -58,7 +70,7 @@ const Gallery = () => {
       category: 'activities',
       title: 'Activités culturelles',
       description: 'Célébration de la diversité culturelle',
-      image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image:a2,
       date: '2025'
     },
     {
@@ -66,7 +78,7 @@ const Gallery = () => {
       category: 'activities',
       title: 'Sortie pédagogique',
       description: 'Découverte et apprentissage hors des murs',
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: ttt,
       date: '2025'
     },
 
@@ -76,7 +88,7 @@ const Gallery = () => {
       category: 'staff',
       title: 'Équipe pédagogique',
       description: 'Des enseignants dévoués et passionnés',
-      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: t1,
       date: '2025'
     },
     {
@@ -84,7 +96,7 @@ const Gallery = () => {
       category: 'staff',
       title: 'Direction de l\'établissement',
       description: 'Une équipe de direction expérimentée',
-      image: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: t2,
       date: '2025'
     },
     {
@@ -92,7 +104,7 @@ const Gallery = () => {
       category: 'staff',
       title: 'Personnel administratif',
       description: 'Une équipe au service des élèves et des parents',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: hsipam,
       date: '2025'
     },
 
@@ -102,7 +114,7 @@ const Gallery = () => {
       category: 'events',
       title: 'Remise des diplômes',
       description: 'Célébration des réussites de nos élèves',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: aaaa,
       date: '2025'
     },
     {
@@ -110,7 +122,7 @@ const Gallery = () => {
       category: 'events',
       title: 'Journée portes ouvertes',
       description: 'Accueil des familles et visite de l\'établissement',
-      image: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: bbbbb,
       date: '2025'
     },
     {
@@ -118,35 +130,9 @@ const Gallery = () => {
       category: 'events',
       title: 'Cérémonie de rentrée',
       description: 'Un nouveau départ prometteur',
-      image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: bbbb,
       date: '2025'
     },
-
-    // Infrastructures
-    {
-      id: 13,
-      category: 'infrastructure',
-      title: 'Bibliothèque',
-      description: 'Un espace dédié à la culture et à la lecture',
-      image: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      date: '2025'
-    },
-    {
-      id: 14,
-      category: 'infrastructure',
-      title: 'Laboratoire de sciences',
-      description: 'Des équipements modernes pour l\'expérimentation',
-      image: 'https://images.unsplash.com/photo-1574958269340-fa927503f3dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      date: '2025'
-    },
-    {
-      id: 15,
-      category: 'infrastructure',
-      title: 'Terrain de sport',
-      description: 'Un espace pour l\'épanouissement physique',
-      image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      date: '2025'
-    }
   ];
 
   // Filtrer les éléments selon la catégorie active

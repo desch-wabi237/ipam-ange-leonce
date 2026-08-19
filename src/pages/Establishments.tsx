@@ -1,5 +1,7 @@
 import Layout from '../components/layout/Layout';
 import { Link } from 'react-router-dom';
+import b5 from "../assets/images/b5.png";
+import b3 from "../assets/images/b3.jpg";
 
 const Establishments = () => {
   // Données des établissements
@@ -10,8 +12,8 @@ const Establishments = () => {
       fullName: "Institut Privé Polyvalent des Arts et Métiers",
       founded: 2005,
       levels: ["Formation Professionnelle", "BTS", "Licence", "Master"],
-      description: "L'IPPAM est un institut de formation professionnelle et supérieure qui prépare les jeunes aux métiers d'avenir dans les domaines des arts, des métiers et des technologies.",
-      image: "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      description: "L'IPAM est un institut de formation professionnelle et supérieure qui prépare les jeunes aux métiers d'avenir dans les domaines des arts, des métiers et des technologies.",
+     image: b5,
       icon: "🏛️",
       color: "from-gold/20 to-gold/5",
       borderColor: "border-gold",
@@ -36,7 +38,7 @@ const Establishments = () => {
       founded: 2005,
       levels: ["Maternelle", "Primaire", "Secondaire Général", "Secondaire Technique"],
       description: "Le Groupe Scolaire Bilingue Ange & Léonce offre un enseignement de qualité de la maternelle au secondaire, avec un accent particulier sur le bilinguisme et l'excellence académique.",
-      image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: b3,
       icon: "🏫",
       color: "from-turquoise/20 to-turquoise/5",
       borderColor: "border-turquoise",

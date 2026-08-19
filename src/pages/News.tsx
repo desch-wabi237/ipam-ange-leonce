@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Layout from '../components/layout/Layout';
-
+import col from "../assets/images/col.jpeg";
+import b5 from "../assets/images/b5.png";
+import t3 from "../assets/images/t3.png";
+import micro from "../assets/images/b1.jpg";
 const News = () => {
   // État pour le filtre et la pagination
   const [activeFilter, setActiveFilter] = useState('all');
@@ -24,7 +27,7 @@ const News = () => {
       category: "evenement",
       date: "15 Juin 2026",
       author: "Direction",
-      image: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: col,
       excerpt: "Venez découvrir nos établissements et rencontrer notre équipe pédagogique. Une occasion unique de visiter nos infrastructures et d'échanger avec nos enseignants.",
       content: "L'IPPAM et le Groupe Scolaire Bilingue Ange & Léonce organisent leur journée portes ouvertes annuelle. Au programme : visites guidées des établissements, rencontres avec les enseignants, démonstrations pédagogiques, ateliers pour les enfants et informations sur les inscriptions. Venez nombreux découvrir notre cadre d'exception !",
       tags: ["Portes ouvertes", "Visite", "Inscriptions"]
@@ -57,7 +60,7 @@ const News = () => {
       category: "partenariat",
       date: "5 Mars 2025",
       author: "Direction",
-      image: "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: b5,
       excerpt: "Signature d'une convention de partenariat pour faciliter l'accès à l'enseignement supérieur.",
       content: "Nous avons le plaisir d'annoncer la signature d'une convention de partenariat avec l'Université de Yaoundé. Ce partenariat permettra à nos élèves de bénéficier d'un accompagnement privilégié pour leur orientation et leur admission dans les filières supérieures. Des conférences et des ateliers seront organisés tout au long de l'année.",
       tags: ["Partenariat", "Université", "Orientation"]
@@ -79,7 +82,7 @@ const News = () => {
       category: "evenement",
       date: "15 Mai 2025",
       author: "Service Sportif",
-      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image:t3 ,
       excerpt: "Nos élèves ont brillé lors des olympiades sportives inter-écoles.",
       content: "Nos élèves ont participé avec brio aux olympiades sportives inter-écoles organisées à Yaoundé. Ils ont remporté plusieurs médailles en football, basket-ball et athlétisme. Cette compétition a été l'occasion de mettre en valeur les talents sportifs de nos élèves et de renforcer l'esprit d'équipe.",
       tags: ["Sport", "Olympiades", "Compétition"]
@@ -112,7 +115,7 @@ const News = () => {
       category: "partenariat",
       date: "20 Février 2025",
       author: "Direction",
-      image: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: micro,
       excerpt: "Un nouveau partenariat pour renforcer l'enseignement de l'anglais.",
       content: "Nous avons signé un partenariat avec le British Council pour renforcer l'enseignement de l'anglais dans notre établissement. Ce partenariat permettra à nos élèves de bénéficier de ressources pédagogiques de qualité et de participer à des programmes d'échange.",
       tags: ["Anglais", "Partenariat", "British Council"]
