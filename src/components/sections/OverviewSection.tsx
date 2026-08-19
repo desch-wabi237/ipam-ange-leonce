@@ -480,7 +480,7 @@ const OverviewSection = () => {
                   <span className="text-2xl">📞</span>
                   <div>
                     <p className="font-semibold text-navy">Téléphone</p>
-                    <p className="text-gray-600 text-sm">+237 6XX XXX XXX</p>
+                    <p className="text-gray-600 text-sm">+237 695 65 45 58</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -502,7 +502,7 @@ const OverviewSection = () => {
                   <span className="text-2xl">💬</span>
                   <div>
                     <p className="font-semibold text-navy">WhatsApp</p>
-                    <p className="text-gray-600 text-sm">+237 6XX XXX XXX</p>
+                    <p className="text-gray-600 text-sm">+237 677 24 52 45</p>
                   </div>
                 </li>
               </ul>
